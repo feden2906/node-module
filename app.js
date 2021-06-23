@@ -18,8 +18,8 @@ const path2000 = path.join(__dirname, 'data', '2000')
 
 // 2._______________________________________________________________________________________
 
-const pathMale=path.join(__dirname, 'data','male')
-const pathFemale=path.join(__dirname, 'data','female')
+const pathMale = path.join(__dirname, 'data', 'male')
+const pathFemale = path.join(__dirname, 'data', 'female')
 
 // const moveGender=(genderPath)=>{
 //     fs.readdir(genderPath, (err, files) => {
@@ -41,22 +41,53 @@ const pathFemale=path.join(__dirname, 'data','female')
 
 // 3._______________________________________________________________________________________
 
+//
+// const pathAll = path.join(__dirname, 'data','all')
+// const pathFinal = path.join(__dirname, 'data','finall')
+//
+// const mover = (folderPath) => {
+//     fs.readdir(folderPath, (err1, files) => {
+//         for (const file of files) {
+//             fs.stat(path.join(folderPath, file), (err2, stats) => {
+//                 if (stats.isDirectory()) {
+//                     return mover(path.join(folderPath, file));
+//                 }
+//
+//                 fs.rename(path.join(folderPath, file), path.join(pathFinal, file), () => { });
+//             })
+//         }
+//     })
+// };
+//
+// mover(pathAll);
 
-const pathAll = path.join(__dirname, 'data','all')
-const pathFinal = path.join(__dirname, 'data','finall')
+// 4.______________class___work____________________________________________________________________
+const manOlderPath = path.join(__dirname, 'manOlder20')
+const manYongerPath = path.join(__dirname, 'manYonger20')
+const womanOlderPath = path.join(__dirname, 'womanOlder20')
+const womanYongerPath = path.join(__dirname, 'womanYonger20')
 
-const mover = (folderPath) => {
-    fs.readdir(folderPath, (err1, files) => {
-        for (const file of files) {
-            fs.stat(path.join(folderPath, file), (err2, stats) => {
-                if (stats.isDirectory()) {
-                    return mover(path.join(folderPath, file));
-                }
 
-                fs.rename(path.join(folderPath, file), path.join(pathFinal, file), () => { });
-            })
-        }
-    })
-};
+const users = [
+    {name: 'Olya', gender: 'female', age: 12},
+    {name: 'Katya', gender: 'female', age: 23},
+    {name: 'Denys', gender: 'male', age: 56},
+    {name: 'Lilya', gender: 'female', age: 33},
+    {name: 'ilona', gender: 'female', age: 43},
+    {name: 'petro', gender: 'male', age: 17},
+    {name: 'olena', gender: 'female', age: 65},
+]
 
-mover(pathAll);
+users.forEach((user) => {
+    if (user.age > 20 && user.gender === 'female') {
+        fs.appendFile(path.join(womanOlderPath, `${user.name}.txt`), `${JSON.stringify(user)}`, (err) => console.log(err))
+    } else if (user.age < 20 && user.gender === 'female') {
+        fs.appendFile(path.join(womanYongerPath, `${user.name}.txt`), `${JSON.stringify(user)}`, (err) => console.log(err))
+    } else if (user.age > 20 && user.gender === 'male') {
+        fs.appendFile(path.join(manOlderPath, `${user.name}.txt`), `${JSON.stringify(user)}`, (err) => console.log(err))
+    } else if (user.age < 20 && user.gender === 'male') {
+        fs.appendFile(path.join(manYongerPath, `${user.name}.txt`), `${JSON.stringify(user)}`, (err) => console.log(err))
+    }
+})
+
+
