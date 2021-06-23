@@ -42,21 +42,21 @@ const pathFemale=path.join(__dirname, 'data','female')
 // 3._______________________________________________________________________________________
 
 
-// const pathAll = path.join(__dirname, 'data','all')
-// const pathFinal = path.join(__dirname, 'data','final')
-//
-// const mover = (folderPath) => {
-//     fs.readdir(folderPath, (err1, files) => {
-//         for (const file of files) {
-//             fs.stat(path.join(folderPath, file), (err2, stats) => {
-//                 if (stats.isDirectory()) {
-//                     return mover(path.join(folderPath, file));
-//                 }
-//
-//                 fs.rename(path.join(folderPath, file), path.join(pathFinal, file), () => { });
-//             })
-//         }
-//     })
-// };
-//
-// mover(pathAll);
+const pathAll = path.join(__dirname, 'data','all')
+const pathFinal = path.join(__dirname, 'data','finall')
+
+const mover = (folderPath) => {
+    fs.readdir(folderPath, (err1, files) => {
+        for (const file of files) {
+            fs.stat(path.join(folderPath, file), (err2, stats) => {
+                if (stats.isDirectory()) {
+                    return mover(path.join(folderPath, file));
+                }
+
+                fs.rename(path.join(folderPath, file), path.join(pathFinal, file), () => { });
+            })
+        }
+    })
+};
+
+mover(pathAll);
