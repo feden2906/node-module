@@ -8,9 +8,15 @@
     <title>Document</title>
 </head>
 <body>
+showAll
+<ul>
+    {{#each users}}
+        <li>
+            {{this.login}}-{{this.password}}
+        </li>
 
-    <h1> {{login}}</h1>
-<h1> {{password}}</h1>
-<a href="/showAll">showAll</a>
+    {{/each}}
+</ul>
+
 </body>
 </html>
